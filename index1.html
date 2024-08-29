@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodePen - Liquid Swipe</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@469&amp;display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+               -moz-user-select: none;
+                -ms-user-select: none;
+                    user-select: none;
+            /* overflow: hidden; */
+          }
+      
+        @media only screen and (max-width: 768px) {
+          
+            .page {
+                width: 100%;
+                position: absolute;
+                font-family: "Oswald", sans-serif;
+                text-align: center;
+                font-size: 37px;
+                font-weight: bold;
+                flex-direction: column;
+                display: flex;
+                justify-content: space-between;
+                padding: 0vh 13px;
+                border-radius:0px;
+                padding-top: 7vh;
+              }
+              #container {
+                width: 400px;
+                height: 100vh;
+                position: absolute;  touch-action: pan-y;  /* Adjust as needed for your design */
+
+                overflow: hidden;
+                border-radius: 0px;
+              }
+              .header {
+                display: flex;
+                justify-content: space-between;
+                color: rgb(255, 255, 255);
+                font-family: "Quicksand", sans-serif;
+                font-size: 15px;
+                padding: 0px 31px;
+                border-radius: 0px;
+                padding-top: 50px;
+              }
+              
+        }
+        
+         
+          #container {
+            width: 400px;
+            height: 100vh;
+            position: absolute;
+            overflow: hidden;
+            border-radius: 60px;
+          }
+          
+       
+          .page {
+            width: 100%;
+            position: absolute;
+            font-family: "Oswald", sans-serif;
+            text-align: center;
+            font-size: 37px;
+            font-weight: bold;
+            flex-direction: column;
+            display: flex;
+            justify-content: space-between;
+            padding: 0vh 13px;
+            border-radius: 60px;
+            padding-top: 7vh;
+          }
+          
+          #page0 {
+            background: rgb(255, 255, 255);
+            margin-bottom: 0;
+            padding-bottom: 0;
+            height: 100vh;
+          }
+          
+          #page1 {
+            background-image: linear-gradient(to right, #09564c 0%, #22a398 100%);
+            margin-bottom: 0;
+            padding-bottom: 0;
+            height: 100vh;
+          }
+          
+          #page2 {
+            background-image: linear-gradient(to right, #271229 0%, #b50031 100%);
+            margin-bottom: 0;
+            padding-bottom: 0;
+            height: 100vh;
+          }
+          
+          #root {
+            display: flex;
+            justify-content: center;
+          }
+          
+          svg {
+            position: absolute;
+            height: 100vh;
+          }
+         
+          button {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-family: "Oswald", sans-serif;
+            background: transparent;
+            color: #ffffff00;
+            border: 0px solid rgba(255, 255, 255, 0);
+          }
+          
+          button:focus {
+            outline: 0;
+          }
+          
+          img {
+            width: 43vh;
+            margin-left: 15px;
+          }
+          
+          .header {
+            display: flex;
+            justify-content: space-between;
+            color: rgb(255, 255, 255);
+            font-family: "Quicksand", sans-serif;
+            font-size: 15px;
+            padding: 0px 31px;
+            border-radius: 60px;
+            padding-top: 50px;
+          }
+          
+          #header0 {
+            color: #000;
+          }
+          
+          #header1 {
+            color: rgb(255, 255, 255);
+          }
+          
+          #header2 {
+            color: #fff;
+          }
+          
+          .skip {
+            font-weight: 400;
+          }
+          
+          #content {
+            display: flex;
+            flex-direction: column;
+            padding: 0px 48px;
+            z-index: 9999999999999999999999;
+            height: 30vh;
+          }
+          
+          .contentL1 {
+            color: rgb(0, 0, 0);
+            font-family: monospace;
+            font-weight: 100;
+            text-align: left;
+            letter-spacing: -2px;
+            line-height: 18px;
+            opacity: 0.3;
+          }
+          
+          .contentL2 {
+            color: #000;
+            font-family: "Oswald", sans-serif;
+            margin-bottom: 8px;
+            text-align: left;
+          }
+          
+          .contentL3 {
+            color: #000;
+            font-family: "Roboto", sans-serif;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 100;
+            word-spacing: 2px;
+            letter-spacing: 1px;
+            opacity: 0.5;
+          }
+          
+          .text0 {
+            color: #000;
+          }
+          
+          .text1 {
+            color: #fd5888;
+          }
+          
+          .text2 {
+            color: #fff;
+          }
+          
+          .button0 {
+            color: #000;
+            border: 0px solid rgba(0, 0, 0, 0.4);
+          }
+          
+          .button1 {
+            color: #fff;
+            border: 0px solid rgba(255, 255, 255, 0.4);
+          }
+          
+          .button2 {
+            color: #fff;
+            border: 0px solid rgba(255, 255, 255, 0.4);
+          }
+          
+          @media only screen and (max-width: 500px) {
+            #container {
+              width: 100%;
+            }
+          }
+          
+    </style>
+</head>
+
+<body translate="no">
+    <div id="root"></div>
+    
+    <!-- Load React, ReactDOM, and React Spring using ES Modules -->
+    <script type="module">
+        import React, { useState, useEffect } from 'https://cdn.skypack.dev/react';
+        import ReactDOM from 'https://cdn.skypack.dev/react-dom';
+        import { useSpring, animated, interpolate } from 'https://cdn.skypack.dev/@react-spring/web';
+        import { useDrag } from 'https://cdn.skypack.dev/react-use-gesture';
+
+        const rootElement = document.getElementById("root");
+        const height = window.innerHeight;
+        const width = window.innerWidth;
+        let w = 400;
+        if (width <= 500) {
+            w = width;
+        }
+        const content = [
+            {
+                contentL1: "Online",
+                contentL2: "GAMBLING",
+                contentL3:
+                "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+                src: "/video4.mp4",
+            },
+            {
+                contentL1: "For",
+                contentL2: "GAMERS",
+                contentL3:
+                "Temporibus autem aut officiis debitis aut rerum necessitatibus.",
+                src: "/video5.mp4",
+            },
+            {
+                contentL1: "Online",
+                contentL2: "GAMBLING",
+                contentL3:
+                "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+                src: "/video3.mp4",
+            },
+        ];
+
+        const keyMap = {
+            0: 1,
+            1: 2,
+            2: 0,
+        };
+
+        const getPath = (y, x, width) => {
+            const anchorDistance = 200 + x * 0.5;
+            const curviness = anchorDistance - 60;
+            return `M0, 
+            ${height} 
+            H0V0h${width}v 
+            ${y - anchorDistance} 
+            c0, 
+            ${curviness} 
+            , 
+            ${x} 
+            , 
+            ${curviness} 
+            , 
+            ${x} 
+            , 
+            ${anchorDistance} 
+            S${width}, 
+            ${y} 
+            ,${width}, 
+            ${y + anchorDistance * 2}
+            V
+            ${height}
+            z`;
+        };
+
+        const Page = ({ data, index, setActive, gone = false }) => {
+            const [isGone, setGone] = useState(gone);
+            const [isMove, setMove] = useState(false);
+            const { contentL1, contentL2, contentL3, src } = data;
+            const [{ posX, posY }, setPos] = useSpring(() => ({
+                posX: -50,
+                posY: height * 0.72 - 20,
+                config: {
+                    mass: 3,
+                },
+            }));
+
+            const [{ d }, setDvalue] = useSpring(() => ({
+                d: gone ? getPath(0, 0, w) : getPath(height * 0.72, 0, 0),
+                config: {
+                    mass: 3,
+                },
+                onRest: () => {
+                    if (isGone) {
+                        setDvalue(getPath(0, 0, w));
+                    }
+                },
+            }));
+
+            useEffect(() => {
+                if (!gone) {
+                    setDvalue({
+                        d: getPath(height * 0.72, 48, 5),
+                    });
+
+                    setTimeout(() => {
+                        setPos({
+                            posX: 7,
+                        });
+                    }, 100);
+                }
+            }, [gone]);
+
+            const bind = useDrag(
+                ({ down, movement: [mx], xy: [, my], vxvy: [vx] }) => {
+                  if (!isGone) {
+                    if (down && isMove) {
+                      setDvalue({
+                        d: getPath(my, mx + 60, 10),
+                      });
+              
+                      setPos({
+                        posX: mx + 20,
+                        posY: my - 20,
+                      });
+              
+                      if (mx > 200 || vx > 3) {
+                        setDvalue({
+                          d: getPath(my, -50, w),
+                        });
+              
+                        setGone(true);
+                        setTimeout(() => {
+                          setDvalue({
+                            d: getPath(my, 0, w),
+                          });
+                          setActive(index);
+                        }, 240);
+                      }
+                    } else {
+                      setDvalue({
+                        d: getPath(height * 0.72, 48, 5),
+                      });
+              
+                      setPos({
+                        posX: 7,
+                        posY: height * 0.72 - 20,
+                      });
+                    }
+                  }
+                },
+                { pointer: { touch: true } }  // Explicitly enable touch events
+              );
+              
+            return /*#__PURE__*/ React.createElement(
+                "div",
+                Object.assign(
+                    { id: `pageContainer${index}`, style: { zIndex: 999999, marginTop: "-44px" } },
+                    bind()
+                ),
+                
+                React.createElement(
+                    "svg",
+                    {
+                        version: "1.1",
+                        id: "blob",
+                        width: "50",
+                        xmlns: "http://www.w3.org/2000/svg",
+                    },
+                    React.createElement(
+                        "clipPath",
+                        { id: `clipping${index}` },
+                        React.createElement(animated.path, {
+                            id: `blob-path${index}`,
+                            d: d,
+                        })
+                    )
+                ),
+                React.createElement(
+                    "div",
+                    {
+                        id: `page${index}`,
+                        className: "page",
+                        style: {
+                            clipPath: `url(#clipping${index})`,
+                            WebkitClipPath: `url(#clipping${index})`,
+                        },
+                    },
+                    React.createElement(
+                        "svg",
+                        {
+                            width: "438",
+                            height: "60",
+                            viewBox: "0 0 478 80",
+                            fill: "none",
+                            xmlns: "http://www.w3.org/2000/svg",
+
+                            style: {
+                                marginLeft:"-60px",
+                                height:"50px",
+                                zIndex:0
+                            },
+                        },
+                        React.createElement("path", {
+                            d: "M14.4409 23.7119C15.0828 23.7119 15.6916 23.8309 16.2671 24.0689C16.8426 24.3013 17.3517 24.6665 17.7944 25.1646C18.2427 25.6571 18.5941 26.2907 18.8486 27.0655C19.1032 27.8347 19.2305 28.7616 19.2305 29.8462V29.8628C19.2305 31.2076 19.0368 32.3586 18.6494 33.3159C18.262 34.2733 17.7059 35.0093 16.9809 35.524C16.2615 36.0331 15.401 36.2876 14.3994 36.2876C13.6634 36.2876 12.9993 36.1548 12.4072 35.8892C11.8206 35.618 11.3336 35.2473 10.9463 34.7769C10.5644 34.301 10.3071 33.7587 10.1743 33.1499L10.1577 33.0586H12.2578L12.291 33.1416C12.3961 33.4183 12.5456 33.6618 12.7392 33.8721C12.9385 34.0824 13.1764 34.2456 13.4531 34.3618C13.7353 34.4725 14.0508 34.5279 14.3994 34.5279C15.0303 34.5279 15.5449 34.3425 15.9433 33.9717C16.3473 33.5954 16.6489 33.0946 16.8481 32.4693C17.0529 31.8384 17.1691 31.1411 17.1968 30.3775C17.2023 30.2945 17.2051 30.2142 17.2051 30.1367C17.2051 30.0537 17.2051 29.9735 17.2051 29.896L16.8315 27.8955C16.8315 27.4418 16.7264 27.0295 16.5161 26.6587C16.3058 26.288 16.0208 25.9947 15.6611 25.7788C15.3069 25.563 14.9057 25.4551 14.4575 25.4551C14.0259 25.4551 13.6302 25.5603 13.2705 25.7705C12.9108 25.9808 12.623 26.2686 12.4072 26.6338C12.1914 26.9935 12.0835 27.3975 12.0835 27.8457V27.8623C12.0835 28.3272 12.1859 28.7395 12.3906 29.0992C12.5954 29.4533 12.8748 29.7328 13.229 29.9375C13.5832 30.1423 13.9871 30.2447 14.4409 30.2447C14.8947 30.2447 15.3014 30.145 15.6611 29.9458C16.0208 29.7466 16.3058 29.4699 16.5161 29.1158C16.7264 28.7616 16.8315 28.3604 16.8315 27.9121V27.8955H17.3296V30.1035H17.039C16.8952 30.419 16.6821 30.7123 16.3999 30.9834C16.1177 31.2546 15.769 31.4732 15.354 31.6392C14.9445 31.8052 14.463 31.8882 13.9097 31.8882C13.146 31.8882 12.4708 31.7167 11.8843 31.3736C11.2977 31.0305 10.8356 30.5601 10.498 29.9624C10.166 29.3648 10 28.6896 10 27.937V27.9204C10 27.107 10.1881 26.3848 10.5644 25.7539C10.9463 25.1175 11.472 24.6195 12.1416 24.2598C12.8167 23.8946 13.5832 23.7119 14.4409 23.7119ZM22.499 34.3784C22.1227 34.3784 21.8073 34.2539 21.5527 34.0049C21.3037 33.7504 21.1792 33.4405 21.1792 33.0752C21.1792 32.7045 21.3037 32.3946 21.5527 32.1455C21.8073 31.891 22.1227 31.7637 22.499 31.7637C22.8808 31.7637 23.1963 31.891 23.4453 32.1455C23.6943 32.3946 23.8188 32.7045 23.8188 33.0752C23.8188 33.4405 23.6943 33.7504 23.4453 34.0049C23.1963 34.2539 22.8808 34.3784 22.499 34.3784ZM22.499 28.2193C22.1227 28.2193 21.8073 28.0948 21.5527 27.8457C21.3037 27.5912 21.1792 27.2813 21.1792 26.916C21.1792 26.5453 21.3037 26.2354 21.5527 25.9864C21.8073 25.7318 22.1227 25.6045 22.499 25.6045C22.8808 25.6045 23.1963 25.7318 23.4453 25.9864C23.6943 26.2354 23.8188 26.5453 23.8188 26.916C23.8188 27.2813 23.6943 27.5912 23.4453 27.8457C23.1963 28.0948 22.8808 28.2193 22.499 28.2193ZM31.5781 35.9888V33.6895H25.7178V31.938C26.0332 31.4012 26.3486 30.8617 26.664 30.3194C26.985 29.777 27.3087 29.2375 27.6352 28.7007C27.9673 28.1584 28.2965 27.6244 28.623 27.0987C28.9551 26.5674 29.2843 26.0445 29.6108 25.5298C29.9429 25.0096 30.2749 24.5033 30.6069 24.0108H33.6201V31.9214H35.2388V33.6895H33.6201V35.9888H31.5781ZM27.7099 31.9712H31.6113V25.7207H31.4868C31.2433 26.097 30.9915 26.4844 30.7314 26.8828C30.4769 27.2813 30.2195 27.688 29.9595 28.1031C29.6994 28.5181 29.442 28.9359 29.1875 29.3565C28.9329 29.7715 28.6811 30.1893 28.4321 30.6099C28.1831 31.0249 27.9424 31.4372 27.7099 31.8467V31.9712ZM39.6943 35.9888V26.1192H39.5449L36.5649 28.2193V26.2105L39.6943 24.0108H41.8276V35.9888H39.6943Z",
+                            fill: "black",
+                        }),
+                        React.createElement("path", {
+                            d: "M49.8284 30.5545C49.5976 30.5504 49.4051 30.4996 49.2512 30.4021C49.1013 30.3005 48.99 30.1724 48.9171 30.0179C48.8442 29.8594 48.8159 29.6928 48.8321 29.518C48.8483 29.3391 48.909 29.1745 49.0143 29.0241C49.1196 28.8696 49.2756 28.7456 49.4821 28.6521L59.2019 24.1584C59.4814 24.0324 59.7386 23.9815 59.9735 24.0059C60.2084 24.0263 60.4007 24.1096 60.5506 24.2559C60.7004 24.3982 60.7896 24.5852 60.818 24.8169C60.8504 25.0445 60.8017 25.3006 60.6721 25.5852L56.2071 35.3044C56.1099 35.5239 55.9822 35.6885 55.8243 35.7983C55.6663 35.9121 55.4983 35.9771 55.3201 35.9934C55.1419 36.0137 54.9738 35.9873 54.8158 35.9141C54.6579 35.8409 54.5303 35.7271 54.4331 35.5727C54.3359 35.4223 54.2874 35.2353 54.2874 35.0117L54.2752 30.6643C54.2752 30.5992 54.2429 30.5667 54.1781 30.5667L49.8284 30.5545Z",
+                            fill: "black",
+                        }),
+                        React.createElement("path", {
+                            d: "M386.905 31.75H388.071C388.716 31.75 389.238 32.2537 389.238 32.875V35.125C389.238 35.7463 388.716 36.25 388.071 36.25H386.905C386.26 36.25 385.738 35.7463 385.738 35.125V32.875C385.738 32.2537 386.26 31.75 386.905 31.75Z",
+                            fill: "black",
+                        }),
+                        React.createElement("path", {
+                            d: "M392.405 29.75H393.571C394.216 29.75 394.738 30.2537 394.738 30.875V35.125C394.738 35.7463 394.216 36.25 393.571 36.25H392.405C391.76 36.25 391.238 35.7463 391.238 35.125V30.875C391.238 30.2537 391.76 29.75 392.405 29.75Z",
+                            fill: "black",
+                        }),
+                        React.createElement("path", {
+                            opacity: "0.2",
+                            d: "M397.905 26.75H399.071C399.716 26.75 400.238 27.2537 400.238 27.875V35.125C400.238 35.7463 399.716 36.25 399.071 36.25H397.905C397.26 36.25 396.738 35.7463 396.738 35.125V27.875C396.738 27.2537 397.26 26.75 397.905 26.75Z",
+                            fill: "black",
+                        }),
+                        React.createElement("path", {
+                            opacity: "0.2",
+                            d: "M403.405 23.75H404.571C405.216 23.75 405.738 24.2537 405.738 24.875V35.125C405.738 35.7463 405.216 36.25 404.571 36.25H403.405C402.76 36.25 402.238 35.7463 402.238 35.125V24.875C402.238 24.2537 402.76 23.75 403.405 23.75Z",
+                            fill: "black",
+                        }),
+                        React.createElement("path", {
+                            d: "M417.726 32.419C415.393 32.419 413.738 30.771 413.738 28.4243C413.738 26.0777 415.393 24.4297 417.726 24.4297H423.685C426.012 24.4297 427.673 26.0777 427.673 28.4243C427.673 30.771 426.012 32.419 423.685 32.419H421.747C421.418 32.0762 421.391 31.3313 421.642 31.0545H423.613C425.149 31.0545 426.236 29.9734 426.236 28.4243C426.236 26.8819 425.149 25.7942 423.613 25.7942H417.799C416.263 25.7942 415.175 26.8819 415.175 28.4243C415.175 29.9734 416.263 31.0545 417.799 31.0545H418.148C418.069 31.4632 418.102 31.9575 418.161 32.419H417.726ZM423.053 35.5699C420.719 35.5699 419.065 33.9219 419.065 31.5752C419.065 29.2285 420.719 27.5806 423.053 27.5806H424.984C425.294 27.9234 425.32 28.6419 425.096 28.9451H423.125C421.589 28.9451 420.502 30.0261 420.502 31.5752C420.502 33.1177 421.589 34.2053 423.125 34.2053H428.939C430.475 34.2053 431.563 33.1177 431.563 31.5752C431.563 30.0261 430.475 28.9451 428.939 28.9451H428.59C428.669 28.5298 428.642 28.042 428.577 27.5806H429.012C431.345 27.5806 433 29.2285 433 31.5752C433 33.9219 431.345 35.5699 429.012 35.5699H423.053Z",
+                            fill: "black",
+                        }),
+                        React.createElement("path", {
+                            opacity: "0.3",
+                            fillRule: "evenodd",
+                            clipRule: "evenodd",
+                            d: "M441 30C441 27.1911 441 25.7866 441.666 24.7777C441.954 24.341 442.325 23.966 442.756 23.6741C443.753 23 445.14 23 447.915 23H458.783C461.558 23 462.945 23 463.942 23.6741C464.373 23.966 464.744 24.341 465.032 24.7777C465.698 25.7866 465.698 27.1911 465.698 30C465.698 32.8089 465.698 34.2134 465.032 35.2223C464.744 35.659 464.373 36.034 463.942 36.3259C462.945 37 461.558 37 458.783 37H447.915C445.14 37 443.753 37 442.756 36.3259C442.325 36.034 441.954 35.659 441.666 35.2223C441 34.2134 441 32.8089 441 30ZM466.686 31.75C467.482 31.4112 468 30.6231 468 29.75C468 28.8769 467.482 28.0888 466.686 27.75V31.75ZM445.835 27.7803V34H447.458V26.2495H445.841L443.837 27.6406V29.1016L445.739 27.7803H445.835ZM450.4 33.7046C450.862 34.034 451.412 34.1987 452.049 34.1987C452.69 34.1987 453.24 34.034 453.698 33.7046C454.157 33.3716 454.509 32.9007 454.756 32.292C455.003 31.6833 455.127 30.9618 455.127 30.1274V30.1167C455.127 29.2788 455.003 28.5573 454.756 27.9521C454.509 27.3434 454.157 26.8743 453.698 26.5449C453.24 26.2155 452.69 26.0508 452.049 26.0508C451.412 26.0508 450.862 26.2155 450.4 26.5449C449.942 26.8743 449.589 27.3434 449.342 27.9521C449.095 28.5573 448.972 29.2788 448.972 30.1167V30.1274C448.972 30.9618 449.095 31.6833 449.342 32.292C449.589 32.9007 449.942 33.3716 450.4 33.7046ZM452.828 32.582C452.617 32.804 452.357 32.915 452.049 32.915C451.745 32.915 451.485 32.804 451.271 32.582C451.059 32.36 450.896 32.0413 450.782 31.626C450.671 31.2106 450.615 30.7111 450.615 30.1274V30.1167C450.615 29.5295 450.671 29.0299 450.782 28.6182C450.896 28.2028 451.059 27.8859 451.271 27.6675C451.485 27.4455 451.745 27.3345 452.049 27.3345C452.357 27.3345 452.617 27.4455 452.828 27.6675C453.043 27.8859 453.206 28.2028 453.317 28.6182C453.431 29.0299 453.489 29.5295 453.489 30.1167V30.1274C453.489 30.7111 453.431 31.2106 453.317 31.626C453.206 32.0413 453.043 32.36 452.828 32.582ZM457.431 33.7046C457.893 34.034 458.442 34.1987 459.08 34.1987C459.721 34.1987 460.27 34.034 460.729 33.7046C461.187 33.3716 461.54 32.9007 461.787 32.292C462.034 31.6833 462.157 30.9618 462.157 30.1274V30.1167C462.157 29.2788 462.034 28.5573 461.787 27.9521C461.54 27.3434 461.187 26.8743 460.729 26.5449C460.27 26.2155 459.721 26.0508 459.08 26.0508C458.442 26.0508 457.893 26.2155 457.431 26.5449C456.972 26.8743 456.62 27.3434 456.373 27.9521C456.125 28.5573 456.002 29.2788 456.002 30.1167V30.1274C456.002 30.9618 456.125 31.6833 456.373 32.292C456.62 32.9007 456.972 33.3716 457.431 33.7046ZM459.858 32.582C459.647 32.804 459.388 32.915 459.08 32.915C458.775 32.915 458.516 32.804 458.301 32.582C458.09 32.36 457.927 32.0413 457.812 31.626C457.701 31.2106 457.646 30.7111 457.646 30.1274V30.1167C457.646 29.5295 457.701 29.0299 457.812 28.6182C457.927 28.2028 458.09 27.8859 458.301 27.6675C458.516 27.4455 458.775 27.3345 459.08 27.3345C459.388 27.3345 459.647 27.4455 459.858 27.6675C460.073 27.8859 460.236 28.2028 460.347 28.6182C460.462 29.0299 460.519 29.5295 460.519 30.1167V30.1274C460.519 30.7111 460.462 31.2106 460.347 31.626C460.236 32.0413 460.073 32.36 459.858 32.582Z",
+                            fill: "black",
+                        })
+                    ),
+                    
+                    React.createElement(
+                        "div",
+                        {
+                            id: `header${index}`,
+                            className: "header",
+                        },
+                        // Insert the SVG at the top of the header
+                     
+                        React.createElement(
+                            "a",
+                            {
+                                href: "https://www.instagram.com/CraftWaves/", 
+                                target: "_blank", 
+                                style: { color: "inherit", textDecoration: "none" }
+                            },
+                            "@CraftWaves"
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: `skip text${index}` },
+                            "SKIP"
+                        )
+                    ),
+                    React.createElement(
+                        "video",
+                        {
+                            alt: `video${index}`,
+                            src: src,        // The video source URL
+                            controls: false,  // Show video controls (play, pause, etc.)
+                            autoPlay: true,  // Automatically start playing the video
+                            loop: true,      // Loop the video
+                            muted: true,     // Mute the video (optional)
+                            style: {
+                                width: '100%',  // Ensure the video fits its container
+                                height: '100%', // Maintain aspect ratio
+                            }
+                        }
+                    ),
+                    
+                 
+                ),
+                React.createElement(
+                    animated.button,
+                    {
+                        className: `button${index}`,
+                        onMouseDown: () => {
+                            setMove(true);
+                        },
+                        onMouseUp: () => {
+                            setMove(false);
+                        },
+                        onTouchStart: () => {
+                            setMove(true);
+                        },
+                        onTouchEnd: () => {
+                            setMove(false);
+                        },
+                        style: {
+                            opacity: posX.interpolate({
+                                range: [0, 100],
+                                output: [1, 0],
+                            }),
+                            transform: interpolate(
+                                [
+                                    posX.interpolate((x) => `translateX(${x}px)`),
+                                    posY.interpolate((y) => `translateY(${y}px)`),
+                                ],
+                                (translateX, translateY) =>
+                                    `${translateX} ${translateY}`
+                            ),
+                        },
+                    },
+                    ""
+                )
+            );
+            
+        };
+
+        const App = () => {
+            const [isActive, setActive] = useState(0);
+            const [elm, setElm] = useState([
+                /*#__PURE__*/
+                React.createElement(Page, {
+                    key: 0,
+                    data: content[0],
+                    index: 0,
+                    setActive: setActive,
+                    gone: true,
+                }),
+            ]);
+
+            useEffect(() => {
+                const key = keyMap[isActive];
+                if (elm.length === 2) {
+                    setTimeout(() => {
+                        setElm([
+                            ...elm.slice(1, 3),
+                            
+                            React.createElement(Page, {
+                                key: key,
+                                data: content[key],
+                                index: key,
+                                setActive: setActive,
+                            }),
+                        ]);
+                    }, 600);
+                } else {
+                    setElm([
+                        ...elm,
+                        
+                        React.createElement(Page, {
+                            key: key,
+                            data: content[key],
+                            index: key,
+                            setActive: setActive,
+                        }),
+                    ]);
+                }
+            }, [isActive]);
+            return /*#__PURE__*/ React.createElement(
+                React.Fragment,
+                null,
+                
+                React.createElement("div", { id: "container" }, elm)
+            );
+        };
+
+        ReactDOM.render(
+            /*#__PURE__*/
+            React.createElement(App, null),
+            rootElement
+        );
+    </script>
+</body>
+</html>
